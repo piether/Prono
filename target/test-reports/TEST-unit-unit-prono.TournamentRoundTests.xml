@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="pieter-laptop" name="prono.TournamentRoundTests" tests="1" time="0.339" timestamp="2010-06-03T19:07:42">
-  <properties />
-  <testcase classname="prono.TournamentRoundTests" name="testSomething" time="0.301" />
-  <system-out><![CDATA[--Output from testSomething--
-]]></system-out>
-  <system-err><![CDATA[--Output from testSomething--
-]]></system-err>
-</testsuite>
