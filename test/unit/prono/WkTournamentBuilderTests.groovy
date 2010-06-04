@@ -12,6 +12,7 @@ class WkTournamentBuilderTests extends GrailsUnitTestCase {
     }
 
     void testBuildNewWkTournament() {
-        new WkTournamentBuilder().buildNewWkTournament();
+        Tournament t = new WkTournamentBuilder().buildNewWkTournament();
+        assert t.getTheFinal() != null
     }
 }
