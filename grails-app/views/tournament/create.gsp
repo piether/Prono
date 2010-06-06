@@ -1,5 +1,9 @@
 
 <%@ page import="prono.Tournament" %>
+<%@ page import="prono.WkReadOnlyService" %>
+<%
+    def wkService = grailsApplication.classLoader.loadClass('prono.WkReadOnlyService').newInstance()
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -24,29 +28,328 @@
             </g:hasErrors>
             <g:form action="save" method="post" >
                 <div class="dialog">
-                    <table>
-                        <tbody>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="theFinal"><g:message code="tournament.theFinal.label" default="The Final" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: tournamentInstance, field: 'theFinal', 'errors')}">
-                                    <g:select name="theFinal.id" from="${prono.KnockoutRound.list()}" optionKey="id" value="${tournamentInstance?.theFinal?.id}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="name"><g:message code="tournament.name.label" default="Name" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: tournamentInstance, field: 'name', 'errors')}">
-                                    <g:textField name="name" value="${tournamentInstance?.name}" />
-                                </td>
-                            </tr>
-                        
-                        </tbody>
-                    </table>
+
+                  <table border="0" cellpadding="0" cellspacing="0" style="font-size: 90%; margin:1em 2em 1em 1em;">
+<tr>
+<td>&#160;</td>
+<td align="center" colspan="3" style="border:1px solid #aaa;" bgcolor="#F2F2F2">Achtste finales<br />
+</td>
+<td colspan="2"></td>
+<td align="center" colspan="3" style="border:1px solid #aaa;" bgcolor="#F2F2F2">Kwartfinales<br />
+</td>
+<td colspan="2"></td>
+<td align="center" colspan="3" style="border:1px solid #aaa;" bgcolor="#F2F2F2">Halve finales<br />
+</td>
+<td colspan="2"></td>
+<td align="center" colspan="3" style="border:1px solid #aaa;" bgcolor="#F2F2F2">Finale<br />
+</td>
+</tr>
+<tr>
+<td width="1">&#160;</td>
+<td width="25">&#160;</td>
+<td width="130">&#160;</td>
+<td width="25">&#160;</td>
+<td width="5">&#160;</td>
+<td width="5">&#160;</td>
+<td width="25">&#160;</td>
+<td width="130">&#160;</td>
+<td width="25">&#160;</td>
+<td width="5">&#160;</td>
+<td width="5">&#160;</td>
+<td width="25">&#160;</td>
+<td width="130">&#160;</td>
+<td width="25">&#160;</td>
+<td width="5">&#160;</td>
+<td width="5">&#160;</td>
+<td width="25">&#160;</td>
+<td width="130">&#160;</td>
+<td width="25">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+   ${fourthRounders?.get(0)}
+</td>
+<td style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+   <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,2)}" optionKey="id" noSelection="['null': '']" />
+</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="6" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" colspan="3" align="center">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="12" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+  <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,3)}" optionKey="id" noSelection="['null': '']" />
+</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,4)}" optionKey="id" noSelection="['null': '']" />
+</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td colspan="5"></td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" colspan="8" align="center">&nbsp;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="24" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,5)}" optionKey="id" noSelection="['null': '']" />
+</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,6)}" optionKey="id" noSelection="['null': '']" />
+</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="6" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" colspan="3" align="center">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="12" align="center" style="border-width:2px 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,7)}" optionKey="id" noSelection="['null': '']" />
+</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,8)}" optionKey="id" noSelection="['null': '']" />
+</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td colspan="10"></td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td rowspan="2"></td>
+<td height="7"></td>
+<td rowspan="2" colspan="12" align="center"></td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W1*</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W8</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="6" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" colspan="3" align="center">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="12" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W4</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W5</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td colspan="5"></td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" colspan="8" align="center">Western Conference</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W2*</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W7</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="6" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" colspan="3" align="center">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W3</td>
+<td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+</tr>
+<tr>
+<td height="7"></td>
+</tr>
+<tr>
+<td height="7"></td>
+<td align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W6</td>
+<td style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
+<td align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
+<td align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
+</tr>
+</table> 
+
                 </div>
                 <div class="buttons">
                     <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
