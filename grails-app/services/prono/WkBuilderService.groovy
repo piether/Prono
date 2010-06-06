@@ -94,10 +94,64 @@ class WkBuilderService {
         }
     }
 
+    def fetchTeams = {
+            zuidAfrika = Team.findByName('Zuid-Afrika')
+            mexico = Team.findByName('Mexico')
+            uruguay = Team.findByName('Uruguay')
+            frankrijk = Team.findByName('Frankrijk')
+
+// Poule B
+            argentinie = Team.findByName('Argentinië')
+            nigeria = Team.findByName('Nigeria')
+            zuidKorea = Team.findByName('Zuid-Korea')
+            griekenland = Team.findByName('Griekenland')
+
+// Poule C
+            engeland = Team.findByName('Engeland')
+            verenigdeStaten = Team.findByName('Verenigde Staten')
+            algerije = Team.findByName('Algerije')
+            slovenie = Team.findByName('Slovenië')
+
+// Poule D
+            duitsland = Team.findByName('Duitsland')
+            australie = Team.findByName('Australie')
+            servie = Team.findByName('Servië')
+            ghana = Team.findByName('Ghana')
+
+// Poule E
+            nederland = Team.findByName('Nederland')
+            denemarken = Team.findByName('Denemarken')
+            japan = Team.findByName('Japan')
+            kameroen = Team.findByName('Kameroen')
+
+// Poule F
+            italie = Team.findByName('Italie')
+            paraguay = Team.findByName('Paraguay')
+            nieuwZeeland = Team.findByName('Nieuw Zeeland')
+            slowakije = Team.findByName('Slowakije')
+
+// Poule G
+            brazilie = Team.findByName('Brazilië')
+            noordKorea = Team.findByName('Noord-Korea')
+            ivoorkust = Team.findByName('Ivoorkust')
+            portugal = Team.findByName('Portugal')
+
+// Poule H
+            spanje = Team.findByName('Spanje')
+            zwitserland = Team.findByName('Zwitserland')
+            honduras = Team.findByName('Honduras')
+            chili = Team.findByName('Chili')
+    }
+
     Tournament buildNewWkTournament() {
+
+        fetchTeams();
+
         Tournament wk = new Tournament(name: 'WK')
+
         TournamentRound groupA = new GroupRound(teams: [zuidAfrika, mexico, uruguay, frankrijk])
         TournamentRound groupB = new GroupRound(teams: [argentinie, nigeria, zuidKorea, griekenland])
+
         TournamentRound groupC = new GroupRound(teams: [engeland, verenigdeStaten, algerije, slovenie])
         TournamentRound groupD = new GroupRound(teams: [duitsland, australie, servie, ghana])
         TournamentRound groupE = new GroupRound(teams: [nederland, denemarken, japan, kameroen])
@@ -105,7 +159,6 @@ class WkBuilderService {
         TournamentRound groupG = new GroupRound(teams: [brazilie, noordKorea, ivoorkust, portugal])
         TournamentRound groupH = new GroupRound(teams: [spanje, zwitserland, honduras, chili])
 
-        /**
         groupA.save()
         groupB.save()
         groupC.save()
@@ -114,66 +167,60 @@ class WkBuilderService {
         groupF.save()
         groupG.save()
         groupH.save()
-        */
 
         wk.groupRounds.addAll([groupA, groupB, groupC, groupD, groupE, groupF, groupG, groupH])
 
-        KnockoutRound r4g1 = new KnockoutRound(left: new Advancer(round: groupA, place: 1), right: new Advancer(round: groupB, place: 2))
-        KnockoutRound r4g2 = new KnockoutRound(left: new Advancer(round: groupC, place: 1), right: new Advancer(round: groupD, place: 2))
-        KnockoutRound r4g3 = new KnockoutRound(left: new Advancer(round: groupE, place: 1), right: new Advancer(round: groupF, place: 2))
-        KnockoutRound r4g4 = new KnockoutRound(left: new Advancer(round: groupG, place: 1), right: new Advancer(round: groupH, place: 2))
-        KnockoutRound r4g5 = new KnockoutRound(left: new Advancer(round: groupD, place: 1), right: new Advancer(round: groupC, place: 2))
-        KnockoutRound r4g6 = new KnockoutRound(left: new Advancer(round: groupB, place: 1), right: new Advancer(round: groupA, place: 2))
-        KnockoutRound r4g7 = new KnockoutRound(left: new Advancer(round: groupH, place: 1), right: new Advancer(round: groupG, place: 2))
-        KnockoutRound r4g8 = new KnockoutRound(left: new Advancer(round: groupF, place: 1), right: new Advancer(round: groupE, place: 2))
-
-        /*
-        r4g1.save()
-        r4g2.save()
-        r4g3.save()
-        r4g4.save()
-        r4g5.save()
-        r4g6.save()
-        r4g7.save()
-        r4g8.save()
-        */
+        KnockoutRound r4g1 = createFourthRound(groupA, groupB)
+        KnockoutRound r4g2 = createFourthRound(groupC, groupD)
+        KnockoutRound r4g3 = createFourthRound(groupE, groupF)
+        KnockoutRound r4g4 = createFourthRound(groupG, groupH)
+        KnockoutRound r4g5 = createFourthRound(groupD, groupC)
+        KnockoutRound r4g6 = createFourthRound(groupB, groupA)
+        KnockoutRound r4g7 = createFourthRound(groupH, groupG)
+        KnockoutRound r4g8 = createFourthRound(groupF, groupE)
 
         wk.fourthRound.addAll([r4g1, r4g2, r4g3, r4g4, r4g5, r4g6, r4g7, r4g8])
 
-        KnockoutRound r3g1 = new KnockoutRound(left: new Advancer(round: r4g1), right: new Advancer(round: r4g2))
-        KnockoutRound r3g2 = new KnockoutRound(left: new Advancer(round: r4g3), right: new Advancer(round: r4g4))
-        KnockoutRound r3g3 = new KnockoutRound(left: new Advancer(round: r4g5), right: new Advancer(round: r4g6))
-        KnockoutRound r3g4 = new KnockoutRound(left: new Advancer(round: r4g7), right: new Advancer(round: r4g8))
-
-        /*
-        r3g1.save()
-        r3g2.save()
-        r3g3.save()
-        r3g4.save()
-        */
+        KnockoutRound r3g1 = createKnockoutRound(r4g1, r4g2)
+        KnockoutRound r3g2 = createKnockoutRound(r4g3, r4g4)
+        KnockoutRound r3g3 = createKnockoutRound(r4g5, r4g6)
+        KnockoutRound r3g4 = createKnockoutRound(r4g7, r4g8)        
 
         wk.quarterFinals.addAll([r3g1, r3g2, r3g3, r3g4])
 
-        KnockoutRound r2g1 = new KnockoutRound(left: new Advancer(round: r3g1), right: new Advancer(round: r3g2))
-        KnockoutRound r2g2 = new KnockoutRound(left: new Advancer(round: r3g3), right: new Advancer(round: r3g4))
-
-        /*
-        r2g1.save()
-        r2g2.save()
-        */
+        KnockoutRound r2g1 = createKnockoutRound(r3g1, r3g2)
+        KnockoutRound r2g2 = createKnockoutRound(r3g3, r3g4)
 
         wk.semiFinals.add(r2g1)
         wk.semiFinals.add(r2g2)
 
-        KnockoutRound r1g1 = new KnockoutRound(left: new Advancer(round: r2g1), right: new Advancer(round: r2g2))
-
-        // r1g1.save()
+        KnockoutRound r1g1 = createKnockoutRound(r2g1, r2g1)
 
         wk.theFinal = r1g1
 
         wk.save()
 
         return wk
+    }
+
+    def createKnockoutRound(def left, def right) {
+        def a1 = new Advancer(round: left)
+        def a2 = new Advancer(round: right)
+        a1.save()
+        a2.save()
+        def round = new KnockoutRound(left: a1, right: a2)
+        round.save()
+        return round
+    }
+
+    def createFourthRound(def left, def right) {
+        def a1 = new Advancer(round: left)
+        def a2 = new Advancer(round: right, place: 2)
+        a1.save()
+        a2.save()
+        def round = new KnockoutRound(left: a1, right: a2)
+        round.save()
+        return round
     }
 
 }

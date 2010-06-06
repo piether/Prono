@@ -1,15 +1,20 @@
 package prono
 
-abstract class TournamentRound {
+class TournamentRound {
+
+    static belongsTo = Tournament
 
 	Team winner
 	Team second
 
     static constraints = {
 
+        winner(nullable:true)
+        second(nullable:true)
+
     }
 
-    Team teamInPosition(Integer position){
+    Team teamInPlace(Integer position){
          if(position == 1)
             return winner
          if(position == 2)
@@ -17,4 +22,7 @@ abstract class TournamentRound {
          else
             return null
     }
+
+    def possibleWinners = {}
+    
 }

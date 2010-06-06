@@ -1,12 +1,15 @@
 package prono
 
-class Advancer {
+class Advancer implements Serializable {
 
+    static belongsTo = TournamentRound
     TournamentRound round
-    Integer position
 
-    Team getTeam(){
-        return round.teamInPosition(position)
+    Integer place = 1
+    
+
+    Team retrieveTeam(){
+        return round.teamInPlace(place)
     }
 
     static constraints = {
