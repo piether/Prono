@@ -68,7 +68,7 @@
 <tr>
 <td height="7"></td>
 <td align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-   ${fourthRounders?.get(0)}
+   ${tournamentInstance.groupRounds[0].winner}
 </td>
 <td style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -77,7 +77,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-   <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,2)}" optionKey="id" noSelection="['null': '']" />
+   ${tournamentInstance.groupRounds[2].second}
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -106,7 +106,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-  <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,3)}" optionKey="id" noSelection="['null': '']" />
+   ${tournamentInstance.groupRounds[2].winner}
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -117,7 +117,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,4)}" optionKey="id" noSelection="['null': '']" />
+     ${tournamentInstance.groupRounds[3].second}
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -147,7 +147,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,5)}" optionKey="id" noSelection="['null': '']" />
+      ${tournamentInstance.groupRounds[4].winner}
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -159,7 +159,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,6)}" optionKey="id" noSelection="['null': '']" />
+    ${tournamentInstance.groupRounds[5].second}
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -187,7 +187,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,7)}" optionKey="id" noSelection="['null': '']" />
+      ${tournamentInstance.groupRounds[6].winner}
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -198,8 +198,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-     <g:select name="second.id" from="${wkService.possibleWinnersForRound(tournamentInstance,5,8)}" optionKey="id" noSelection="['null': '']" />
-</td>
+      ${tournamentInstance.groupRounds[7].second}</td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 <td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
@@ -226,7 +225,9 @@
 </tr>
 <tr>
 <td height="7"></td>
-<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W1*</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+   ${tournamentInstance.groupRounds[3].winner}
+</td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 <td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
@@ -236,7 +237,9 @@
 </tr>
 <tr>
 <td height="7"></td>
-<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W8</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+  ${tournamentInstance.groupRounds[2].second}
+</td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 <td rowspan="6" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
@@ -262,7 +265,9 @@
 </tr>
 <tr>
 <td height="7"></td>
-<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W4</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+  ${tournamentInstance.groupRounds[1].winner}
+</td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 </tr>
@@ -271,7 +276,9 @@
 </tr>
 <tr>
 <td height="7"></td>
-<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W5</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+  ${tournamentInstance.groupRounds[0].second}
+</td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 <td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
@@ -286,7 +293,7 @@
 </tr>
 <tr>
 <td height="7"></td>
-<td rowspan="2" colspan="8" align="center">Western Conference</td>
+<td rowspan="2" colspan="8" align="center">&nbsp;</td>
 </tr>
 <tr>
 <td height="7"></td>
@@ -298,7 +305,9 @@
 </tr>
 <tr>
 <td height="7"></td>
-<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W2*</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+  ${tournamentInstance.groupRounds[7].winner}
+</td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 <td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
@@ -308,7 +317,9 @@
 </tr>
 <tr>
 <td height="7"></td>
-<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W7</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+   ${tournamentInstance.groupRounds[6].second}
+</td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 <td rowspan="6" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
@@ -334,7 +345,9 @@
 </tr>
 <tr>
 <td height="7"></td>
-<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W3</td>
+<td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+  ${tournamentInstance.groupRounds[5].winner}
+</td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 </tr>
@@ -343,7 +356,9 @@
 </tr>
 <tr>
 <td height="7"></td>
-<td align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">W6</td>
+<td align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
+  ${tournamentInstance.groupRounds[4].second}
+</td>
 <td style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 <td align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>

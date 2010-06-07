@@ -19,6 +19,7 @@ class Tournament {
     KnockoutRound theFinal
 
     static constraints = {
+        theFinal(nullable:true)
     }
 
     TournamentRound tournamentRoundAt(int roundIndex, int gameIndex){
