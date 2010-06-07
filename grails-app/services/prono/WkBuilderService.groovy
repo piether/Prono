@@ -95,69 +95,68 @@ class WkBuilderService {
     }
 
     def fetchTeams = {
-            zuidAfrika = Team.findByName('Zuid-Afrika')
-            mexico = Team.findByName('Mexico')
-            uruguay = Team.findByName('Uruguay')
-            frankrijk = Team.findByName('Frankrijk')
+        zuidAfrika = Team.findByName('Zuid-Afrika')
+        mexico = Team.findByName('Mexico')
+        uruguay = Team.findByName('Uruguay')
+        frankrijk = Team.findByName('Frankrijk')
 
 // Poule B
-            argentinie = Team.findByName('Argentinië')
-            nigeria = Team.findByName('Nigeria')
-            zuidKorea = Team.findByName('Zuid-Korea')
-            griekenland = Team.findByName('Griekenland')
+        argentinie = Team.findByName('Argentinië')
+        nigeria = Team.findByName('Nigeria')
+        zuidKorea = Team.findByName('Zuid-Korea')
+        griekenland = Team.findByName('Griekenland')
 
 // Poule C
-            engeland = Team.findByName('Engeland')
-            verenigdeStaten = Team.findByName('Verenigde Staten')
-            algerije = Team.findByName('Algerije')
-            slovenie = Team.findByName('Slovenië')
+        engeland = Team.findByName('Engeland')
+        verenigdeStaten = Team.findByName('Verenigde Staten')
+        algerije = Team.findByName('Algerije')
+        slovenie = Team.findByName('Slovenië')
 
 // Poule D
-            duitsland = Team.findByName('Duitsland')
-            australie = Team.findByName('Australie')
-            servie = Team.findByName('Servië')
-            ghana = Team.findByName('Ghana')
+        duitsland = Team.findByName('Duitsland')
+        australie = Team.findByName('Australie')
+        servie = Team.findByName('Servië')
+        ghana = Team.findByName('Ghana')
 
 // Poule E
-            nederland = Team.findByName('Nederland')
-            denemarken = Team.findByName('Denemarken')
-            japan = Team.findByName('Japan')
-            kameroen = Team.findByName('Kameroen')
+        nederland = Team.findByName('Nederland')
+        denemarken = Team.findByName('Denemarken')
+        japan = Team.findByName('Japan')
+        kameroen = Team.findByName('Kameroen')
 
 // Poule F
-            italie = Team.findByName('Italie')
-            paraguay = Team.findByName('Paraguay')
-            nieuwZeeland = Team.findByName('Nieuw Zeeland')
-            slowakije = Team.findByName('Slowakije')
+        italie = Team.findByName('Italie')
+        paraguay = Team.findByName('Paraguay')
+        nieuwZeeland = Team.findByName('Nieuw Zeeland')
+        slowakije = Team.findByName('Slowakije')
 
 // Poule G
-            brazilie = Team.findByName('Brazilië')
-            noordKorea = Team.findByName('Noord-Korea')
-            ivoorkust = Team.findByName('Ivoorkust')
-            portugal = Team.findByName('Portugal')
+        brazilie = Team.findByName('Brazilië')
+        noordKorea = Team.findByName('Noord-Korea')
+        ivoorkust = Team.findByName('Ivoorkust')
+        portugal = Team.findByName('Portugal')
 
 // Poule H
-            spanje = Team.findByName('Spanje')
-            zwitserland = Team.findByName('Zwitserland')
-            honduras = Team.findByName('Honduras')
-            chili = Team.findByName('Chili')
+        spanje = Team.findByName('Spanje')
+        zwitserland = Team.findByName('Zwitserland')
+        honduras = Team.findByName('Honduras')
+        chili = Team.findByName('Chili')
     }
 
-    Tournament buildNewWkTournament() {
+    Tournament buildNewWkTournament(List winners, List seconds) {
 
         fetchTeams();
 
         Tournament wk = new Tournament(name: 'WK')
 
-        TournamentRound groupA = new GroupRound(teams: [zuidAfrika, mexico, uruguay, frankrijk])
-        TournamentRound groupB = new GroupRound(teams: [argentinie, nigeria, zuidKorea, griekenland])
-
-        TournamentRound groupC = new GroupRound(teams: [engeland, verenigdeStaten, algerije, slovenie])
-        TournamentRound groupD = new GroupRound(teams: [duitsland, australie, servie, ghana])
-        TournamentRound groupE = new GroupRound(teams: [nederland, denemarken, japan, kameroen])
-        TournamentRound groupF = new GroupRound(teams: [italie, paraguay, nieuwZeeland, slowakije])
-        TournamentRound groupG = new GroupRound(teams: [brazilie, noordKorea, ivoorkust, portugal])
-        TournamentRound groupH = new GroupRound(teams: [spanje, zwitserland, honduras, chili])
+        TournamentRound groupA = new GroupRound(teams: [zuidAfrika, mexico, uruguay, frankrijk], winner: winners[0], second: seconds[0])
+        TournamentRound groupB = new GroupRound(teams: [argentinie, nigeria, zuidKorea, griekenland], winner: winners[1], second: seconds[1])
+        TournamentRound groupC = new GroupRound(teams: [engeland, verenigdeStaten, algerije, slovenie], winner: winners[2], second: seconds[2])
+        TournamentRound groupD = new GroupRound(teams: [duitsland, australie, servie, ghana], winner: winners[3], second: seconds[3])
+        TournamentRound groupE = new GroupRound(teams: [nederland, denemarken, japan, kameroen], winner: winners[4], second: seconds[4])
+        TournamentRound groupF = new GroupRound(teams: [italie, paraguay, nieuwZeeland, slowakije], winner: winners[5], second: seconds[5])
+        TournamentRound groupG = new GroupRound(teams: [brazilie, noordKorea, ivoorkust, portugal], winner: winners[6], second: seconds[6])
+        TournamentRound groupH = new GroupRound(teams: [spanje, zwitserland, honduras, chili], winner: winners[7], second: seconds[7])
 
         groupA.save()
         groupB.save()
@@ -170,7 +169,7 @@ class WkBuilderService {
 
         wk.groupRounds.addAll([groupA, groupB, groupC, groupD, groupE, groupF, groupG, groupH])
 
-        KnockoutRound r4g1 = createFourthRound(groupA, groupB)
+        KnockoutRound r4g1 = createFourthRound(groupA, groupC)
         KnockoutRound r4g2 = createFourthRound(groupC, groupD)
         KnockoutRound r4g3 = createFourthRound(groupE, groupF)
         KnockoutRound r4g4 = createFourthRound(groupG, groupH)
@@ -184,7 +183,7 @@ class WkBuilderService {
         KnockoutRound r3g1 = createKnockoutRound(r4g1, r4g2)
         KnockoutRound r3g2 = createKnockoutRound(r4g3, r4g4)
         KnockoutRound r3g3 = createKnockoutRound(r4g5, r4g6)
-        KnockoutRound r3g4 = createKnockoutRound(r4g7, r4g8)        
+        KnockoutRound r3g4 = createKnockoutRound(r4g7, r4g8)
 
         wk.quarterFinals.addAll([r3g1, r3g2, r3g3, r3g4])
 
@@ -198,29 +197,23 @@ class WkBuilderService {
 
         wk.theFinal = r1g1
 
-        wk.save()
+        wk.save(flush: true)
 
         return wk
     }
 
-    def createKnockoutRound(def left, def right) {
-        def a1 = new Advancer(round: left)
-        def a2 = new Advancer(round: right)
-        a1.save()
-        a2.save()
-        def round = new KnockoutRound(left: a1, right: a2)
-        round.save()
-        return round
+    def saveKnockoutRounds(Tournament wk) {
+        /*
+
+        */
+    }
+
+    def createKnockoutRound(TournamentRound tr1, TournamentRound tr2) {
+        new KnockoutRound()
     }
 
     def createFourthRound(def left, def right) {
-        def a1 = new Advancer(round: left)
-        def a2 = new Advancer(round: right, place: 2)
-        a1.save()
-        a2.save()
-        def round = new KnockoutRound(left: a1, right: a2)
-        round.save()
-        return round
+        new KnockoutRound()
     }
 
 }
