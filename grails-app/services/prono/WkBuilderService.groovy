@@ -4,94 +4,113 @@ class WkBuilderService {
 
     static transactional = true
 
+    def fifaSiteScraperService
+
     Team zuidAfrika, mexico, uruguay, frankrijk, argentinie, nigeria, zuidKorea, griekenland, engeland, verenigdeStaten, algerije, slovenie;
     Team duitsland, australie, servie, ghana, nederland, denemarken, japan, kameroen, italie, paraguay, nieuwZeeland, slowakije, brazilie, noordKorea, ivoorkust, portugal, spanje, zwitserland, honduras, chili;
 
+    def teamNames = [
+            "Algerije": 'Algeria',
+            "Engeland": 'England',
+            "Noord-Korea": 'Korea DPR',
+            "Servië": 'Serbia',
+            "Argentinië": 'Argentina',
+            "Frankrijk": 'France',
+            "Zuid-Korea": 'Korea Republic',
+            "Slowakije": 'Slovakia',
+            "Australië": 'Australia',
+            "Duitsland": 'Germany',
+            "Mexico": 'Mexico',
+            "Slovenië": 'Slovenia',
+            "Brazilië": 'Brazil',
+            "Ghana": 'Ghana',
+            "Nederland": 'Netherlands',
+            "Zuid-Afrika": 'South Africa',
+            "Kameroen": 'Cameroon',
+            "Griekenland": 'Greece',
+            "Nieuw Zeeland": 'New Zealand',
+            "Spanje": 'Spain',
+            "Chili": 'Chile',
+            "Honduras": 'Honduras',
+            "Nigeria": 'Nigeria',
+            "Zwitserland": 'Switzerland',
+            "Ivoorkust": "Côte d'Ivoire",
+            "Italië": 'Italy',
+            "Paraguay": 'Paraguay',
+            "Uruguay": 'Uruguay',
+            "Denemarken": 'Denmark',
+            "Japan": 'Japan',
+            "Portugal": 'Portugal',
+            "Verenigde Staten": 'USA'
+    ]
+
+    /**
+
+     */
     def createTeams() {
 
         if (zuidAfrika == null) {
 
+            fifaSiteScraperService.scrapeTeams()
+
             // Poule A
-            zuidAfrika = new Team(name: 'Zuid-Afrika')
-            mexico = new Team(name: 'Mexico')
-            uruguay = new Team(name: 'Uruguay')
-            frankrijk = new Team(name: 'Frankrijk')
+            zuidAfrika = createTeam('Zuid-Afrika')
+            mexico = createTeam('Mexico')
+            uruguay = createTeam('Uruguay')
+            frankrijk = createTeam('Frankrijk')
 
 // Poule B
-            argentinie = new Team(name: 'Argentinië')
-            nigeria = new Team(name: 'Nigeria')
-            zuidKorea = new Team(name: 'Zuid-Korea')
-            griekenland = new Team(name: 'Griekenland')
+            argentinie = createTeam('Argentinië')
+            nigeria = createTeam('Nigeria')
+            zuidKorea = createTeam('Zuid-Korea')
+            griekenland = createTeam('Griekenland')
 
 // Poule C
-            engeland = new Team(name: 'Engeland')
-            verenigdeStaten = new Team(name: 'Verenigde Staten')
-            algerije = new Team(name: 'Algerije')
-            slovenie = new Team(name: 'Slovenië')
+            engeland = createTeam('Engeland')
+            verenigdeStaten = createTeam('Verenigde Staten')
+            algerije = createTeam('Algerije')
+            slovenie = createTeam('Slovenië')
 
 // Poule D
-            duitsland = new Team(name: 'Duitsland')
-            australie = new Team(name: 'Australie')
-            servie = new Team(name: 'Servië')
-            ghana = new Team(name: 'Ghana')
+            duitsland = createTeam('Duitsland')
+            australie = createTeam('Australië')
+            servie = createTeam('Servië')
+            ghana = createTeam('Ghana')
 
 // Poule E
-            nederland = new Team(name: 'Nederland')
-            denemarken = new Team(name: 'Denemarken')
-            japan = new Team(name: 'Japan')
-            kameroen = new Team(name: 'Kameroen')
+            nederland = createTeam('Nederland')
+            denemarken = createTeam('Denemarken')
+            japan = createTeam('Japan')
+            kameroen = createTeam('Kameroen')
 
 // Poule F
-            italie = new Team(name: 'Italie')
-            paraguay = new Team(name: 'Paraguay')
-            nieuwZeeland = new Team(name: 'Nieuw Zeeland')
-            slowakije = new Team(name: 'Slowakije')
+            italie = createTeam('Italië')
+            paraguay = createTeam('Paraguay')
+            nieuwZeeland = createTeam('Nieuw Zeeland')
+            slowakije = createTeam('Slowakije')
 
 // Poule G
-            brazilie = new Team(name: 'Brazilië')
-            noordKorea = new Team(name: 'Noord-Korea')
-            ivoorkust = new Team(name: 'Ivoorkust')
-            portugal = new Team(name: 'Portugal')
+            brazilie = createTeam('Brazilië')
+            noordKorea = createTeam('Noord-Korea')
+            ivoorkust = createTeam('Ivoorkust')
+            portugal = createTeam('Portugal')
 
 // Poule H
-            spanje = new Team(name: 'Spanje')
-            zwitserland = new Team(name: 'Zwitserland')
-            honduras = new Team(name: 'Honduras')
-            chili = new Team(name: 'Chili')
-
-            zuidAfrika.save()
-            mexico.save()
-            uruguay.save()
-            frankrijk.save()
-            argentinie.save()
-            nigeria.save()
-            zuidKorea.save()
-            griekenland.save()
-            engeland.save()
-            verenigdeStaten.save()
-            algerije.save()
-            slovenie.save()
-            duitsland.save()
-            australie.save()
-            servie.save()
-            ghana.save()
-            nederland.save()
-            denemarken.save()
-            japan.save()
-            kameroen.save()
-            italie.save()
-            paraguay.save()
-            nieuwZeeland.save()
-            slowakije.save()
-            brazilie.save()
-            noordKorea.save()
-            ivoorkust.save()
-            portugal.save()
-            spanje.save()
-            zwitserland.save()
-            honduras.save()
-            chili.save()
+            spanje = createTeam('Spanje')
+            zwitserland = createTeam('Zwitserland')
+            honduras = createTeam('Honduras')
+            chili = createTeam('Chili')
         }
+    }
+
+    def createTeam(def name){
+        Team team = fifaSiteScraperService.getTeamWithName(teamNames[name])
+        if(team == null)
+            throw new RuntimeException("No team with name ${name} >${teamNames[name]}<")
+        team.setName name
+        team.save(flush:true)
+        println team.image + '!'
+        return team
     }
 
     def fetchTeams = {
@@ -114,7 +133,7 @@ class WkBuilderService {
 
 // Poule D
         duitsland = Team.findByName('Duitsland')
-        australie = Team.findByName('Australie')
+        australie = Team.findByName('Australië')
         servie = Team.findByName('Servië')
         ghana = Team.findByName('Ghana')
 
@@ -125,7 +144,7 @@ class WkBuilderService {
         kameroen = Team.findByName('Kameroen')
 
 // Poule F
-        italie = Team.findByName('Italie')
+        italie = Team.findByName('Italië')
         paraguay = Team.findByName('Paraguay')
         nieuwZeeland = Team.findByName('Nieuw Zeeland')
         slowakije = Team.findByName('Slowakije')
