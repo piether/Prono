@@ -68,7 +68,7 @@
 <tr>
 <td height="7"></td>
 <td align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-   ${tournamentInstance.groupRounds[0].winner}
+  1C. <div id='r4g1t1'>${tournamentInstance.groupRounds[2].winner}</div>
 </td>
 <td style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -77,7 +77,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-   ${tournamentInstance.groupRounds[2].second}
+   2D. <div id='r4g1t2'>${tournamentInstance.groupRounds[3].second}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -106,7 +106,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-   ${tournamentInstance.groupRounds[2].winner}
+   1A. <div id='r4g2t1'>${tournamentInstance.groupRounds[0].winner}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -117,7 +117,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-     ${tournamentInstance.groupRounds[3].second}
+    2B. <div id='r4g2t2'>${tournamentInstance.groupRounds[1].second}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -147,7 +147,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-      ${tournamentInstance.groupRounds[4].winner}
+    1G. <div id='r4g3t1'>${tournamentInstance.groupRounds[6].winner}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -159,7 +159,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-    ${tournamentInstance.groupRounds[5].second}
+   2H. <div id='r4g3t2'>${tournamentInstance.groupRounds[7].second}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -187,7 +187,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-      ${tournamentInstance.groupRounds[6].winner}
+     1E. <div id='r4g4t1'>${tournamentInstance.groupRounds[4].winner}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -198,7 +198,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-      ${tournamentInstance.groupRounds[7].second}</td>
+     2F. <div id='r4g4t2'>${tournamentInstance.groupRounds[5].second}</div></td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
 <td rowspan="2" align="center" style="border-width:2px 0 0 0; border-style:solid;border-color:black;">&#160;</td>
@@ -226,7 +226,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-   ${tournamentInstance.groupRounds[3].winner}
+  1B. <div id='r4g5t1'>${tournamentInstance.groupRounds[1].winner}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -238,7 +238,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-  ${tournamentInstance.groupRounds[2].second}
+  2A. <div id='r4g5t2'>${tournamentInstance.groupRounds[0].second}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -266,7 +266,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-  ${tournamentInstance.groupRounds[1].winner}
+  1D. <div id='r4g6t1'>${tournamentInstance.groupRounds[3].winner}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -277,7 +277,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-  ${tournamentInstance.groupRounds[0].second}
+  2C. <div id='r4g6t2'>${tournamentInstance.groupRounds[2].second}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -306,7 +306,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-  ${tournamentInstance.groupRounds[7].winner}
+  1H. <div id='r4g7t1'>${tournamentInstance.groupRounds[7].winner}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -318,7 +318,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-   ${tournamentInstance.groupRounds[6].second}
+   2G. <div id='r4g7t2'>${tournamentInstance.groupRounds[6].second}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -346,7 +346,7 @@
 <tr>
 <td height="7"></td>
 <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-  ${tournamentInstance.groupRounds[5].winner}
+  1F. <div id='r4g8t1'>${tournamentInstance.groupRounds[5].winner}</div>
 </td>
 <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>
@@ -357,7 +357,7 @@
 <tr>
 <td height="7"></td>
 <td align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
-  ${tournamentInstance.groupRounds[4].second}
+  2E. <div id='r4g8t2'>${tournamentInstance.groupRounds[4].second}</div>
 </td>
 <td style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;&#160;</td>
 <td align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9">&#160;</td>

@@ -27,6 +27,7 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.5'
+        compile 'org.ccil.cowan.tagsoup:tagsoup:1.2'
     }
     plugins{ 
      runtime ":hibernate:1.3.1" 
