@@ -2,7 +2,7 @@ package prono
 
 class TournamentController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST", saveGroupRounds: "POST", saveKnockoutRounds: "POST"]
 
     def wkBuilderService
 
@@ -22,20 +22,36 @@ class TournamentController {
     def saveGroupRounds = {
         List winners = new ArrayList()
         List seconds = new ArrayList()
+        def errorTeams = new ArrayList()
         (1..8).each() {
-            winners.add(Team.findById(params["group.${it}.winner.id"]))
-            seconds.add(Team.findById(params["group.${it}.second.id"]))
+            def winner = Team.findById(params["group.${it}.winner.id"])
+            winners.add(winner)
+            def second = Team.findById(params["group.${it}.second.id"])
+            seconds.add(second)
+            if (winner == second) {
+                errorTeams.add(winner)
+            }
         }
-        Tournament wk = wkBuilderService.buildNewWkTournament(winners, seconds)
-        if (wk != null && !wk.hasErrors()) {
-            render(view: "create", model: [tournamentInstance: wk])
+        if (!errorTeams.isEmpty()) {
+            flash.message = ""
+            errorTeams.each {
+                flash.message += "Je kan ${it} niet eerst en tweeds maken, he slumme!<br/>"
+                render(view: "create_grouprounds")
+            }
+            flash.message += "Al je voorspellingen zijn, als straf, gereset! MUHAHAHAHA"
         }
         else {
-            flash.message = "error"
-            wk.errors.each{
-                flash.message += "\n" + it
+            Tournament wk = wkBuilderService.buildNewWkTournament(winners, seconds)
+            if (wk != null && !wk.hasErrors()) {
+                render(view: "create_knockoutrounds", model: [tournamentInstance: wk])
             }
-            render(view: "create_grouprounds")
+            else {
+                flash.message = "error"
+                wk.errors.each {
+                    flash.message += "\n" + it
+                }
+                render(view: "create_grouprounds")
+            }
         }
 
     }
@@ -48,6 +64,50 @@ class TournamentController {
         }
         else {
             render(view: "create", model: [tournamentInstance: tournamentInstance])
+        }
+    }
+
+    def saveKnockoutRounds = {
+        def tournamentInstance = Tournament.get(params["tournamentInstance.id"])
+
+        if (!tournamentInstance) {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'tournament.label', default: 'Tournament'), params.id])}"
+            redirect(action: "list")
+        }
+        else {
+            (1..8).each() {
+                def round = tournamentInstance.fourthRound.get(it - 1)
+                saveRound(4, it, round)
+            }
+            (1..4).each() {
+                def round = tournamentInstance.fourthRound.get(it - 1)
+                saveRound(3, it, round)
+            }
+            (1..2).each() {
+                def round = tournamentInstance.fourthRound.get(it - 1)
+                saveRound(2, it, round)
+            }
+            saveRound(1, 1, tournamentInstance.theFinal)
+        }
+        redirect(controller:"otherPredictions", action: "create")
+    }
+
+
+    private def saveRound(int roundNb, int gameNb, KnockoutRound round) {
+        def error = false
+        def winner
+        def roundAndGame = "r" + roundNb + "g" + gameNb
+        if (params[roundAndGame + "t1"]?.size()>0) {
+            winner = Team.findById(params[roundAndGame + "t1"])
+        } else if (params[roundAndGame + "t2"]?.size()>0) {
+            winner = Team.findById(params[roundAndGame + "t2"])
+        }
+        if (winner) {
+            round.setWinner(winner)
+            round.save()
+        } else {
+            flash.message = "'t is mislukt, sorry sorry sorry"
+            redirect(action: "list")
         }
     }
 

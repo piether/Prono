@@ -26,7 +26,8 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "update"
-			url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+			url = "jdbc:mysql://localhost:3307/piether?autoReconnect=true"
+            driverClassName = "com.mysql.jdbc.Driver"
 		}
 	}
 }
