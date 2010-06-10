@@ -51,45 +51,39 @@
 		</style>
     </head>
     <body>
-		<div id="nav">
-			<div class="homePagePanel">
-				<div class="panelTop">
+		
+		<div style="margin-left: 10px">
+	        <h1>HET SYSTEEM</h1>
 
-				</div>
-				<div class="panelBody">
-					<h1>Application Status</h1>
-					<ul>
-						<li>App version: <g:meta name="app.version"></g:meta></li>
-						<li>Grails version: <g:meta name="app.grails.version"></g:meta></li>
-						<li>JVM version: ${System.getProperty('java.version')}</li>
-						<li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
-						<li>Domains: ${grailsApplication.domainClasses.size()}</li>
-						<li>Services: ${grailsApplication.serviceClasses.size()}</li>
-						<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
-					</ul>
-					<h1>Installed Plugins</h1>
-					<ul>
-						<g:set var="pluginManager"
-						       value="${applicationContext.getBean('pluginManager')}"></g:set>
+          <ul>
+<li>2de ronde
+          <ul>
+            <li>
+                 juiste ploeg op de juiste plaats: 3 punten
+            </li>
+            <li>
+                 juiste ploeg door maar op de foute plaats: 2 punten
+            </li>
+          </ul></li>
+<li>juiste ploeg in de kwartfinale (plaats heeft gn belang): 4 punten</li>
+<li>juiste ploeg in de halve finale: 5 punten</li>
+<li>juiste ploeg in de finale: 6 punten</li>
+<li>juiste ploeg in de troostfinale: 3 punten</li>
+<li>Wereldkampioen: 8 punten</li>
+            </ul>
+  <br/>
+<ul>
+<li>Hyundai Best Young Player: 4 punten</li>
+<li>Adidas Golden Ball: 4 punten (beste speler)</li>
+<li>Adidas Golden Shoe: 4 punten (topschutter)</li>
+<li>Yashin Award for Best Goal Keeper: 4 punten</li>
+<li>FIFA Fair Play Award: 0 punten</li>
+<li>FIFA Award for most entertaining team: 0 punten</li>
+<li>Volgende premier van België: 0 punten</li>
+          </ul>
 
-						<g:each var="plugin" in="${pluginManager.allPlugins}">
-							<li>${plugin.name} - ${plugin.version}</li>
-						</g:each>
-
-					</ul>
-				</div>
-				<div class="panelBtm">
-				</div>
-			</div>
-
-
-		</div>
-		<div id="pageBody">
-	        <h1>Welcome to Grails</h1>
-	        <p>Congratulations, you have successfully started your first Grails application! At the moment
-	        this is the default page, feel free to modify it to either redirect to a controller or display whatever
-	        content you may choose. Below is a list of controllers that are currently deployed in this application,
-	        click on each to execute its default action:</p>
+            <br/>
+          <g:link controller="tournament" action="create">Maak je prono aan!</g:link>
 
 	        <div id="controllerList" class="dialog">
 				<h2>Available Controllers:</h2>

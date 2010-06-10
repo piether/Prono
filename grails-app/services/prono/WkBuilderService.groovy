@@ -109,7 +109,6 @@ class WkBuilderService {
             throw new RuntimeException("No team with name ${name} >${teamNames[name]}<")
         team.setName name
         team.save(flush:true)
-        println team.image + '!'
         return team
     }
 

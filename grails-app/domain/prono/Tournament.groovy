@@ -40,9 +40,7 @@ class Tournament {
 
     public List<Team> fourthRounders() {
         def result = new LinkedList()
-        println fourthRound.size()
         fourthRound.each{
-            println it.possibleWinners()
            result.addAll(it.possibleWinners())
         }
         assert(fourthRound.size()==8)
