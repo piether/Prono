@@ -36,6 +36,24 @@
                                 </td>
                             </tr>
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="image"><g:message code="team.image.label" default="Image" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: teamInstance, field: 'image', 'errors')}">
+                                    
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="link"><g:message code="team.link.label" default="Link" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: teamInstance, field: 'link', 'errors')}">
+                                    
+                                </td>
+                            </tr>
+                        
                         </tbody>
                     </table>
                 </div>

@@ -49,6 +49,8 @@ class WkBuilderService {
      */
     def createTeams() {
 
+        zuidAfrika = Team.findByName('Zuid-Afrika')
+
         if (zuidAfrika == null) {
 
             fifaSiteScraperService.scrapeTeams()
@@ -185,7 +187,9 @@ class WkBuilderService {
         groupG.save()
         groupH.save()
 
-        wk.groupRounds.addAll([groupA, groupB, groupC, groupD, groupE, groupF, groupG, groupH])
+        ([groupA, groupB, groupC, groupD, groupE, groupF, groupG, groupH]).each {
+            wk.addToGroupRounds(it)
+        }
 
         KnockoutRound r4g1 = createFourthRound(groupA, groupC)
         KnockoutRound r4g2 = createFourthRound(groupC, groupD)
@@ -196,20 +200,24 @@ class WkBuilderService {
         KnockoutRound r4g7 = createFourthRound(groupH, groupG)
         KnockoutRound r4g8 = createFourthRound(groupF, groupE)
 
-        wk.fourthRound.addAll([r4g1, r4g2, r4g3, r4g4, r4g5, r4g6, r4g7, r4g8])
-
+        ([r4g1, r4g2, r4g3, r4g4, r4g5, r4g6, r4g7, r4g8]).each {
+            wk.addToFourthRound(it)
+        }
+        
         KnockoutRound r3g1 = createKnockoutRound(r4g1, r4g2)
         KnockoutRound r3g2 = createKnockoutRound(r4g3, r4g4)
         KnockoutRound r3g3 = createKnockoutRound(r4g5, r4g6)
         KnockoutRound r3g4 = createKnockoutRound(r4g7, r4g8)
 
-        wk.quarterFinals.addAll([r3g1, r3g2, r3g3, r3g4])
+        ([r3g1, r3g2, r3g3, r3g4]).each {
+            wk.addToQuarterFinals(it)
+        }
 
         KnockoutRound r2g1 = createKnockoutRound(r3g1, r3g2)
         KnockoutRound r2g2 = createKnockoutRound(r3g3, r3g4)
 
-        wk.semiFinals.add(r2g1)
-        wk.semiFinals.add(r2g2)
+        wk.addToSemiFinals(r2g1)
+        wk.addToSemiFinals(r2g2)
 
         KnockoutRound r1g1 = createKnockoutRound(r2g1, r2g1)
 

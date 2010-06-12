@@ -2,6 +2,8 @@ package prono
 
 class Team implements Serializable {
 
+    static hasMany = [players:Player]
+
 	String name
 
     def image

@@ -75,40 +75,52 @@ class TournamentController {
             redirect(action: "list")
         }
         else {
+            def success = true
             (1..8).each() {
-                def round = tournamentInstance.fourthRound.get(it - 1)
-                saveRound(4, it, round)
+                def round = tournamentInstance.fourthRound.getAt(it - 1)
+                success &= saveRound(4, it, round)
             }
             (1..4).each() {
-                def round = tournamentInstance.fourthRound.get(it - 1)
-                saveRound(3, it, round)
+                def round = tournamentInstance.fourthRound.getAt(it - 1)
+                success &= saveRound(3, it, round)
             }
             (1..2).each() {
-                def round = tournamentInstance.fourthRound.get(it - 1)
-                saveRound(2, it, round)
+                def round = tournamentInstance.fourthRound.getAt(it - 1)
+                success &= saveRound(2, it, round)
             }
-            saveRound(1, 1, tournamentInstance.theFinal)
+            success &= saveRound(1, 1, tournamentInstance.theFinal)
+
+            if(!success){
+                flash.message = "Had ge alles ingevuld?"
+                render(view: "create_knockoutrounds", model: [tournamentInstance: tournamentInstance])
+            }else {
+
+                redirect(controller:"otherPredictions", action: "create")
+            }
         }
-        redirect(controller:"otherPredictions", action: "create")
     }
 
 
     private def saveRound(int roundNb, int gameNb, KnockoutRound round) {
-        def error = false
+        def result
+        if(round == null){
+            return false
+        }
         def winner
         def roundAndGame = "r" + roundNb + "g" + gameNb
-        if (params[roundAndGame + "t1"]?.size()>0) {
+        if (params[roundAndGame + "t1"]?.size()>0 && params[roundAndGame + "t1"] != 'on') {
             winner = Team.findById(params[roundAndGame + "t1"])
-        } else if (params[roundAndGame + "t2"]?.size()>0) {
+        } else if (params[roundAndGame + "t2"]?.size()>0 && params[roundAndGame + "t2"] != 'on') {
             winner = Team.findById(params[roundAndGame + "t2"])
         }
         if (winner) {
             round.setWinner(winner)
             round.save()
+            result = true
         } else {
-            flash.message = "'t is mislukt, sorry sorry sorry"
-            redirect(action: "list")
+            result = false
         }
+        return result
     }
 
     def show = {

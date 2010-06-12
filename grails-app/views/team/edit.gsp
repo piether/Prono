@@ -32,10 +32,37 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                  <label for="players"><g:message code="team.players.label" default="Players" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: teamInstance, field: 'players', 'errors')}">
+                                    <g:select name="players" from="${prono.Player.list()}" multiple="yes" optionKey="id" size="5" value="${teamInstance?.players*.id}" />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                   <label for="name"><g:message code="team.name.label" default="Name" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: teamInstance, field: 'name', 'errors')}">
                                     <g:textField name="name" value="${teamInstance?.name}" />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="image"><g:message code="team.image.label" default="Image" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: teamInstance, field: 'image', 'errors')}">
+                                    
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="link"><g:message code="team.link.label" default="Link" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: teamInstance, field: 'link', 'errors')}">
+                                    
                                 </td>
                             </tr>
                         
