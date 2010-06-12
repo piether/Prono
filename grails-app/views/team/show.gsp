@@ -30,9 +30,36 @@
                         </tr>
                     
                         <tr class="prop">
+                            <td valign="top" class="name"><g:message code="team.players.label" default="Players" /></td>
+                            
+                            <td valign="top" style="text-align: left;" class="value">
+                                <ul>
+                                <g:each in="${teamInstance.players}" var="p">
+                                    <li><g:link controller="player" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+                                </g:each>
+                                </ul>
+                            </td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
                             <td valign="top" class="name"><g:message code="team.name.label" default="Name" /></td>
                             
                             <td valign="top" class="value">${fieldValue(bean: teamInstance, field: "name")}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="team.image.label" default="Image" /></td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean: teamInstance, field: "image")}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="team.link.label" default="Link" /></td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean: teamInstance, field: "link")}</td>
                             
                         </tr>
                     

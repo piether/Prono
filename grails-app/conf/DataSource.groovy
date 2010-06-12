@@ -28,6 +28,8 @@ environments {
 			dbCreate = "update"
 			url = "jdbc:mysql://localhost:3307/piether?autoReconnect=true"
             driverClassName = "com.mysql.jdbc.Driver"
+            username = "piether"
+            password = "fapwnt4Q"
 		}
 	}
 }

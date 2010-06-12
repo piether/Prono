@@ -2,15 +2,9 @@ package prono
 
 class Tournament {
 
-    ArrayList<GroupRound> groupRounds;
-    ArrayList<KnockoutRound> fourthRound;
+    List<GroupRound> groupRounds;
+    List<KnockoutRound> fourthRound, quarterFinals, semiFinals;
 
-    Tournament(){
-        groupRounds = new ArrayList()
-        fourthRound = new ArrayList()
-        quarterFinals = new ArrayList()
-        semiFinals = new ArrayList()
-    }
 
 	static hasMany = [groupRounds: GroupRound, fourthRound: KnockoutRound, quarterFinals: KnockoutRound, semiFinals: KnockoutRound]
 
