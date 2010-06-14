@@ -6,9 +6,9 @@ class Team implements Serializable {
 
 	String name
 
-    def image
+    String image
 
-    def link
+    String link
 
     static constraints = {
     }
