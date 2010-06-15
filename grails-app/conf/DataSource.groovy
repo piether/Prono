@@ -3,6 +3,7 @@ dataSource {
 	driverClassName = "org.hsqldb.jdbcDriver"
 	username = "sa"
 	password = ""
+    dbunitXmlType = "structured"
 }
 hibernate {
     cache.use_second_level_cache=true
@@ -15,6 +16,8 @@ environments {
 		dataSource {
 			dbCreate = "create-drop" // one of 'create', 'create-drop','update'
 			url = "jdbc:hsqldb:mem:devDB"
+            initialData = "data/dev/data.xml"
+            initialOperation = "CLEAN_INSERT"
 		}
 	}
 	test {

@@ -20,6 +20,13 @@ body {
 	padding:20px;
 }
 
+#loginInfo {
+    float: right;
+    width: 300px;
+    text-align: right;
+    margin-right: 15px;
+}
+
 a:link, a:visited, a:hover {
     color: #666;
     font-weight: bold;

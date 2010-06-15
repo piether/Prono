@@ -8,6 +8,8 @@ class Tournament {
 
 	static hasMany = [groupRounds: GroupRound, fourthRound: KnockoutRound, quarterFinals: KnockoutRound, semiFinals: KnockoutRound]
 
+    static belongsTo = User
+
 	String name
 
     KnockoutRound theFinal
