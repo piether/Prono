@@ -45,7 +45,7 @@ class FifaSiteScraperService {
                 def height = Integer.parseInt(it.td[5].toString())
                 def player = new Player(nr: nr, name: name, dateOfBirth: dateOfBirth, pos: position, clubs: clubs, height: height)
                 team.addToPlayers(player)
-            }catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
             }
             // println "${nr}.  ${name}  ${dateOfBirth}  ${position}  ${clubs}  ${height}"
         }
@@ -54,4 +54,38 @@ class FifaSiteScraperService {
     def getTeamWithName(def name) {
         return teamsMap[name]
     }
+
+    def scrapeGames() {
+        def tagsoupParser = new org.ccil.cowan.tagsoup.Parser()
+        def slurper = new XmlSlurper(tagsoupParser)
+        def htmlParser = slurper.parse('http://www.fifa.com/worldcup/matches/index.html')
+
+        def teams = htmlParser.'**'.findAll { it.@class == 'fixture'}.each {
+            it.tbody.tr.each {
+                def dateTime = it.td[1].text()
+                def venue = it.td[2].text()
+                def homeTeamLink = it.td[4].a.@href.text()
+                def homeScore, awayScore
+                String score = it.td[5].text()
+                def matches = score =~ /(\d*):(\d*)/
+                if (matches.size() > 0) {
+                    homeScore = matches[0][1]
+                    awayScore = matches[0][2]
+                }
+                def awayTeamLink = it.td[6].a.@href.text()
+                def homeTeam = Team.findByLink(homeTeamLink)
+                println homeTeam
+                Game game = new Game()
+            }
+        }
+
+        /**
+         def teams = htmlParser.'**'.find { it.@id == 'fwcHPMatchlist'}.li.each {print it.div[0].div[0].div[1].img[0].@alt
+         print " - "
+         print it.div[0].div[3].div[1].img[0].@alt
+         if (it.div[2] != 'Preview') {print ": " + it.div[0].div[1]
+         print " (" + it.div[1] + ")"} else {print ": @" + it.div[0].div[1]}println ""}*/
+
+    }
+
 }
