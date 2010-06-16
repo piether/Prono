@@ -14,11 +14,12 @@
 </div>
 <div id="loginInfo">
   <g:isNotLoggedIn>
-    <g:link url="login">Login</g:link>
+    <g:link url="login" absolute='true'>Login</g:link>
   </g:isNotLoggedIn>
   <g:isLoggedIn>
     Ingelogd als <g:loggedInUserInfo field="username"/>
-    <g:link url='logout'>Logout</g:link>
+    <g:link controller="logout">Logout</g:link>
+    <g:link url='logout' absolute='true'>Logout</g:link>
   </g:isLoggedIn>
 </div>
 <div id="grailsLogo" class="logo">

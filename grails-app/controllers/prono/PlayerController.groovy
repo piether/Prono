@@ -8,9 +8,9 @@ class PlayerController {
 
     static {
         def cal = new GregorianCalendar()
-        cal.set(Calendar.YEAR,1988)
-        cal.set(Calendar.MONTH,Calendar.DECEMBER)
-        cal.set(Calendar.DAY_OF_MONTH,31)
+        cal.set(Calendar.YEAR, 1988)
+        cal.set(Calendar.MONTH, Calendar.DECEMBER)
+        cal.set(Calendar.DAY_OF_MONTH, 31)
         dec30first88 = new Date(cal.getTimeInMillis())
     }
 
@@ -35,14 +35,20 @@ class PlayerController {
     }
 
     def playersAsJson = {
-            def players = Player.findAllByNameIlike("%"+params.q+"%")
-            def jsonList = players.collect { [id: it.id, name: it.name] }
-            render jsonList as JSON
+        def players = Player.findAllByNameIlike("%" + params.q + "%")
+        def jsonList = players.collect { [id: it.id, name: it.name] }
+        render jsonList as JSON
     }
 
     def youngPlayersAsJson = {
-            def players = Player.findAllByNameIlikeAndDateOfBirthGreaterThan("%"+params.q+"%", dec30first88)
-            def jsonList = players.collect { [id: it.id, name: it.name] }
-            render jsonList as JSON
+        def players = Player.findAllByNameIlikeAndDateOfBirthGreaterThan("%" + params.q + "%", dec30first88)
+        def jsonList = players.collect { [id: it.id, name: it.name] }
+        render jsonList as JSON
+    }
+
+    def goalKeepersAsJson = {
+        def players = Player.findAllByNameIlikeAndPosIlike("%" + params.q + "%", "gk")
+        def jsonList = players.collect { [id: it.id, name: it.name] }
+        render jsonList as JSON
     }
 }

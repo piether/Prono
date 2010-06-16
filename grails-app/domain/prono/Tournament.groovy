@@ -13,9 +13,11 @@ class Tournament {
 	String name
 
     KnockoutRound theFinal
+    KnockoutRound consolidationFinal
 
     static constraints = {
         theFinal(nullable:true)
+        consolidationFinal(nullable:true)
     }
 
     TournamentRound tournamentRoundAt(int roundIndex, int gameIndex){

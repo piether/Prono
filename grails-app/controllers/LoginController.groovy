@@ -82,6 +82,7 @@ class LoginController {
 		}
 		catch (org.springframework.security.ui.openid.OpenIDConsumerException e) {
 			log.error "Consumer error: $e.message", e
+            println e.message
 			redirect url: openIDAuthenticationProcessingFilter.authenticationFailureUrl
 		}
 	}

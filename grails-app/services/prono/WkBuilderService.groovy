@@ -220,9 +220,10 @@ class WkBuilderService {
         wk.addToSemiFinals(r2g1)
         wk.addToSemiFinals(r2g2)
 
-        KnockoutRound r1g1 = createKnockoutRound(r2g1, r2g1)
+        KnockoutRound r1g1 = createKnockoutRound(r2g1, r2g2)
 
         wk.theFinal = r1g1
+        wk.consolidationFinal = createKnockoutRound(r2g1, r2g2)
 
         wk.save(flush: true)
 

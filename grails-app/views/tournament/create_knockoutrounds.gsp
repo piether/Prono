@@ -22,7 +22,7 @@
           var newRound = round - 1
           var newGame = Math.ceil(game / 2)
           var nextTeamNum = (1 + parseInt(game)) % 2 + 1
-          var otherTeamNum = teamNum==1 ? 2 : 1
+          var otherTeamNum = teamNum == 1 ? 2 : 1
           var otherTeamSelector = "input[name=" + winningTeam.substring(0, 5) + otherTeamNum + "]"
           $(otherTeamSelector).attr('checked', false)
           var otherTeamId = $(otherTeamSelector).attr('name')
@@ -30,8 +30,17 @@
           var divId = "r" + newRound + "g" + newGame + "t" + nextTeamNum
           $("#" + divId).html($("#" + $(this).attr("name")).html())
           var checkBoxId = "input[name='" + divId + "']"
-          // alert(checkBoxId + " " + $(checkBoxId).attr('type') + " " + $(checkBoxId).size())
           $(checkBoxId).attr('value', $(this).attr('value'))
+
+          var roundAndGame = $(this).attr("name").substring(0, 4)
+          var losingTeamId = $(otherTeamSelector).attr('value')
+          $("input[name='loser_" + roundAndGame + "']").attr('value', losingTeamId)
+          if (newRound == 1) {
+            var consolidationFinalDivId = "r1g2t" + game
+            var consolidationFinalCheckboxId = "input[name='" + consolidationFinalDivId + "']"
+            $(consolidationFinalCheckboxId).attr('value', losingTeamId)
+            $("#" + consolidationFinalDivId).html($("#" + otherTeamId).html())
+          }
         }
       });
     });
@@ -69,7 +78,7 @@
           <td align="center" colspan="3" style="border:1px solid #aaa;" bgcolor="#F2F2F2">Halve finales<br/>
           </td>
           <td colspan="2"></td>
-          <td align="center" colspan="3" style="border:1px solid #aaa;" bgcolor="#F2F2F2">Finale<br/>
+          <td align="center" colspan="3" style="border:1px solid #aaa;" bgcolor="#F2F2F2">Finale & kleine finale<br/>
           </td>
         </tr>
         <tr>
@@ -247,7 +256,7 @@
           <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
 
           </td>
-          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r4g5t1'><g:team team='${tournamentInstance.groupRounds[1].winner}'/></div> </td>
+          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r4g5t1'><g:team team='${tournamentInstance.groupRounds[1].winner}'/></div></td>
           <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><input type="checkbox" name="r4g5t1" value="${tournamentInstance.groupRounds[1].winner.id}"/></td>
           <td rowspan="2" align="center" style="border-width:0 0 2px 0; border-style:solid;border-color:black;">&#160;</td>
         </tr>
@@ -259,7 +268,7 @@
           <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
 
           </td>
-          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r4g5t2'><g:team team='${tournamentInstance.groupRounds[0].second}'/></div> </td>
+          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r4g5t2'><g:team team='${tournamentInstance.groupRounds[0].second}'/></div></td>
           <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><input type="checkbox" name="r4g5t2" value="${tournamentInstance.groupRounds[0].second.id}"/></td>
           <td rowspan="6" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
         </tr>
@@ -269,6 +278,11 @@
           <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">&#160;</td>
           <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r3g3t1'/></td>
           <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><input type="checkbox" name="r3g3t1"/></td>
+          <!-- bijgekomen -->
+          <td colspan="6">&#160;&#160;</td>
+          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F2F2F2">&#160;&#160;</td>
+          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r1g2t1'/></td>
+          <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><input type="checkbox" name="r1g2t1"/></td>
         </tr>
         <tr>
           <td height="7"></td>
@@ -281,6 +295,11 @@
           <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r3g3t2'/></td>
           <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><input type="checkbox" name="r3g3t2"/></td>
           <td rowspan="12" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
+          <!-- bijgekomen -->
+          <td colspan="6">&#160;&#160;</td>
+          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F2F2F2">&#160;&#160;</td>
+          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r1g2t2'/></td>
+          <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><input type="checkbox" name="r1g2t2"/></td>
         </tr>
         <tr>
           <td height="7"></td>
@@ -336,7 +355,7 @@
           <td height="7"></td>
           <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
           </td>
-          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r4g7t2'><g:team team='${tournamentInstance.groupRounds[6].second}'/></div> </td>
+          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r4g7t2'><g:team team='${tournamentInstance.groupRounds[6].second}'/></div></td>
           <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><input type="checkbox" name="r4g7t2" value="${tournamentInstance.groupRounds[6].second.id}"/></td>
           <td rowspan="6" align="center" style="border-width:2px 2px 2px 0; border-style:solid;border-color:black;">&#160;</td>
         </tr>
@@ -364,7 +383,7 @@
           <td rowspan="2" align="center" bgcolor="#F2F2F2" style="border:1px solid #aaa;">
 
           </td>
-          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r4g8t1'><g:team team='${tournamentInstance.groupRounds[5].winner}'/></div> </td>
+          <td rowspan="2" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><div id='r4g8t1'><g:team team='${tournamentInstance.groupRounds[5].winner}'/></div></td>
           <td rowspan="2" align="center" style="border:1px solid #aaa;" bgcolor="#F9F9F9"><input type="checkbox" name="r4g8t1" value="${tournamentInstance.groupRounds[5].winner.id}"/></td>
         </tr>
         <tr>
@@ -381,12 +400,31 @@
         </tr>
       </table>
 
+      <input type='hidden' name='loser_r4g1'/>
+      <input type='hidden' name='loser_r4g2'/>
+      <input type='hidden' name='loser_r4g3'/>
+      <input type='hidden' name='loser_r4g4'/>
+      <input type='hidden' name='loser_r4g5'/>
+      <input type='hidden' name='loser_r4g6'/>
+      <input type='hidden' name='loser_r4g7'/>
+      <input type='hidden' name='loser_r4g8'/>
+
+      <input type='hidden' name='loser_r3g1'/>
+      <input type='hidden' name='loser_r3g2'/>
+      <input type='hidden' name='loser_r3g3'/>
+      <input type='hidden' name='loser_r3g4'/>
+
+      <input type='hidden' name='loser_r2g1'/>
+      <input type='hidden' name='loser_r2g2'/>
+
+      <input type='hidden' name='loser_r1g1'/>
+      <input type='hidden' name='loser_r1g2'/>
+
     </div>
     <div class="buttons">
       <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/></span>
     </div>
 
-    <input type='text' id='loser_r1g1' name='loser_r1g1'>
   </g:form>
 </div>
 </body>

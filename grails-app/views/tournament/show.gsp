@@ -30,6 +30,13 @@
                         </tr>
                     
                         <tr class="prop">
+                            <td valign="top" class="name"><g:message code="tournament.theFinal.label" default="The Final" /></td>
+                            
+                            <td valign="top" class="value"><g:link controller="knockoutRound" action="show" id="${tournamentInstance?.theFinal?.id}">${tournamentInstance?.theFinal?.encodeAsHTML()}</g:link></td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
                             <td valign="top" class="name"><g:message code="tournament.fourthRound.label" default="Fourth Round" /></td>
                             
                             <td valign="top" style="text-align: left;" class="value">
@@ -43,9 +50,9 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="tournament.theFinal.label" default="The Final" /></td>
+                            <td valign="top" class="name"><g:message code="tournament.consolidationFinal.label" default="Consolidation Final" /></td>
                             
-                            <td valign="top" class="value"><g:link controller="knockoutRound" action="show" id="${tournamentInstance?.theFinal?.id}">${tournamentInstance?.theFinal?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="knockoutRound" action="show" id="${tournamentInstance?.consolidationFinal?.id}">${tournamentInstance?.consolidationFinal?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     

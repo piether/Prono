@@ -81,21 +81,24 @@ class TournamentController {
                 success &= saveRound(4, it, round)
             }
             (1..4).each() {
-                def round = tournamentInstance.fourthRound.getAt(it - 1)
+                def round = tournamentInstance.quarterFinals.getAt(it - 1)
                 success &= saveRound(3, it, round)
             }
             (1..2).each() {
-                def round = tournamentInstance.fourthRound.getAt(it - 1)
+                def round = tournamentInstance.semiFinals.getAt(it - 1)
                 success &= saveRound(2, it, round)
             }
             success &= saveRound(1, 1, tournamentInstance.theFinal)
+            success &= saveRound(1, 2, tournamentInstance.consolidationFinal)
 
-            if(!success){
+            if (!success) {
                 flash.message = "Had ge alles ingevuld?"
                 render(view: "create_knockoutrounds", model: [tournamentInstance: tournamentInstance])
-            }else {
-
-                redirect(controller:"otherPredictions", action: "create")
+            } else {
+                if(!tournamentInstance.save(flush:true)){
+                    flash.message = "Er is toch nog iets misgelopen precies"
+                }
+                redirect(controller: "otherPredictions", action: "create")
             }
         }
     }
@@ -103,19 +106,22 @@ class TournamentController {
 
     private def saveRound(int roundNb, int gameNb, KnockoutRound round) {
         def result
-        if(round == null){
+        if (round == null) {
             return false
         }
         def winner
+        def loser
         def roundAndGame = "r" + roundNb + "g" + gameNb
-        if (params[roundAndGame + "t1"]?.size()>0 && params[roundAndGame + "t1"] != 'on') {
+        if (params[roundAndGame + "t1"]?.size() > 0 && params[roundAndGame + "t1"] != 'on') {
             winner = Team.findById(params[roundAndGame + "t1"])
-        } else if (params[roundAndGame + "t2"]?.size()>0 && params[roundAndGame + "t2"] != 'on') {
+            loser = Team.findById(params["loser_" + roundAndGame])
+        } else if (params[roundAndGame + "t2"]?.size() > 0 && params[roundAndGame + "t2"] != 'on') {
             winner = Team.findById(params[roundAndGame + "t2"])
+            loser = Team.findById(params["loser_" + roundAndGame])
         }
-        if (winner) {
+        if (winner != null && loser != null) {
             round.setWinner(winner)
-            round.save()
+            round.setSecond(loser)
             result = true
         } else {
             result = false

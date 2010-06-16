@@ -48,15 +48,6 @@
                                 </td>
                             </tr>
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="possibleWinners"><g:message code="knockoutRound.possibleWinners.label" default="Possible Winners" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: knockoutRoundInstance, field: 'possibleWinners', 'errors')}">
-                                    
-                                </td>
-                            </tr>
-                        
                         </tbody>
                     </table>
                 </div>

@@ -7,7 +7,7 @@ class SecurityService {
     static transactional = true
 
     def createAdmin() {
-        Role adminRole = new Role(authority: 'ROLE_USER', description: 'Administration role')
+        Role adminRole = new Role(authority: 'ROLE_ADMIN', description: 'Administration role')
         adminRole.save()
         Role userRole = new Role(authority: 'ROLE_USER', description: 'End user role')
         userRole.save()

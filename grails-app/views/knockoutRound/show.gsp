@@ -43,13 +43,6 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="knockoutRound.possibleWinners.label" default="Possible Winners" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: knockoutRoundInstance, field: "possibleWinners")}</td>
-                            
-                        </tr>
-                    
                     </tbody>
                 </table>
             </div>

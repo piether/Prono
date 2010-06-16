@@ -28,8 +28,6 @@
                    	    
                             <th><g:message code="knockoutRound.second.label" default="Second" /></th>
                    	    
-                            <g:sortableColumn property="possibleWinners" title="${message(code: 'knockoutRound.possibleWinners.label', default: 'Possible Winners')}" />
-                        
                         </tr>
                     </thead>
                     <tbody>
@@ -41,8 +39,6 @@
                             <td>${fieldValue(bean: knockoutRoundInstance, field: "winner")}</td>
                         
                             <td>${fieldValue(bean: knockoutRoundInstance, field: "second")}</td>
-                        
-                            <td>${fieldValue(bean: knockoutRoundInstance, field: "possibleWinners")}</td>
                         
                         </tr>
                     </g:each>

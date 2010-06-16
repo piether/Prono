@@ -22,7 +22,5 @@ class TournamentRound {
          else
             return null
     }
-
-    def possibleWinners = {}
     
 }

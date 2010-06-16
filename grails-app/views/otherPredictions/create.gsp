@@ -6,25 +6,23 @@
   <meta name="layout" content="main"/>
   <g:set var="entityName" value="${message(code: 'otherPredictions.label', default: 'OtherPredictions')}"/>
   <title><g:message code="default.create.label" args="[entityName]"/></title>
-  <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css"/>
-  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/lib/jquery.bgiframe.min.js"></script>
-  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/lib/jquery.dimensions.js"></script>
-  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
+  <link rel="stylesheet" href="${resource(dir: 'css/jquery', file: 'jquery.autocomplete.css')}"/>
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.bgiframe.min.js')}"/>
+  <script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.autocomplete.js')}"/>
   <script type="text/javascript">
 
 
 
     $(document).ready(function() {
-      var url = "${createLink(controller:'player', action:'youngPlayersAsJson')}"
 
-	$("#byp").autocomplete(url, {
-		minChars: 0,
-		width: 500,
-		matchContains: true,
-		autoFill: false,
-		scrollHeight: 300,
-		scroll: true,
-		max: 25,
+      var autoCompleteOptions = {
+        minChars: 0,
+        width: 500,
+        matchContains: true,
+        autoFill: false,
+        scrollHeight: 300,
+        scroll: true,
+        max: 25,
         datatype: 'json',
         parse: function(data) {
           // alert('parse!')
@@ -35,19 +33,36 @@
           }
           return rows;
         },
-		formatItem: function(row, i, max) {
-			return row.name;
-		},
-		formatMatch: function(row, i, max) {
-			return "<strong>" + row.name + "</strong>";
-		},
-		formatResult: function(row) {
-			return row.name;
-		}
-	});
-	$("#byp").result(function(event, data, formatted) {
-		$("#bestYoungPlayer\\.id").val(data["id"]);
-	});
+        formatItem: function(row, i, max) {
+          return row.name;
+        },
+        formatMatch: function(row, i, max) {
+          return "<strong>" + row.name + "</strong>";
+        },
+        formatResult: function(row) {
+          return row.name;
+        }
+      }
+
+      $("#byp").autocomplete("${createLink(controller:'player', action:'youngPlayersAsJson')}", autoCompleteOptions);
+      $("#byp").result(function(event, data, formatted) {
+        $("#bestYoungPlayer\\.id").val(data["id"]);
+      });
+
+      $("#bestGoalie").autocomplete("${createLink(controller:'player', action:'goalKeepersAsJson')}", autoCompleteOptions);
+      $("#bestGoalie").result(function(event, data, formatted) {
+        $("#bestGoalie\\.id").val(data["id"]);
+      });
+
+      $("#goldenBall").autocomplete("${createLink(controller:'player', action:'playersAsJson')}", autoCompleteOptions);
+      $("#goldenBall").result(function(event, data, formatted) {
+        $("#goldenBall\\.id").val(data["id"]);
+      });
+
+      $("#goldenShoe").autocomplete("${createLink(controller:'player', action:'playersAsJson')}", autoCompleteOptions);
+      $("#goldenShoe").result(function(event, data, formatted) {
+        $("#goldenShoe\\.id").val(data["id"]);
+      });
 
     });
   </script>
@@ -78,8 +93,8 @@
             <label for="byp"><g:message code="otherPredictions.bestYoungPlayer.label" default="Best Young Player"/></label>
           </td>
           <td valign="top" class="value ${hasErrors(bean: otherPredictionsInstance, field: 'bestYoungPlayer', 'errors')}">
-            <input type="text" id="byp" size="50" />
-            <input type="hidden" id="bestYoungPlayer.id" name="bestYoungPlayer.id" value="" />
+            <input type="text" id="byp" size="50"/>
+            <input type="hidden" id="bestYoungPlayer.id" name="bestYoungPlayer.id" value=""/>
           </td>
         </tr>
 
@@ -88,7 +103,8 @@
             <label for="goldenBall"><g:message code="otherPredictions.goldenBall.label" default="Golden Ball"/></label>
           </td>
           <td valign="top" class="value ${hasErrors(bean: otherPredictionsInstance, field: 'goldenBall', 'errors')}">
-            <g:select name="goldenBall.id" from="${prono.Player.list()}" optionKey="id" value="${otherPredictionsInstance?.goldenBall?.id}"/>
+            <input type="text" id="goldenBall" size="50"/>
+            <input type="hidden" id="goldenBall.id" name="goldenBall.id" value=""/>
           </td>
         </tr>
 
@@ -106,7 +122,8 @@
             <label for="bestGoalie"><g:message code="otherPredictions.bestGoalie.label" default="Best Goalie"/></label>
           </td>
           <td valign="top" class="value ${hasErrors(bean: otherPredictionsInstance, field: 'bestGoalie', 'errors')}">
-            <g:select name="bestGoalie.id" from="${prono.Player.list()}" optionKey="id" value="${otherPredictionsInstance?.bestGoalie?.id}"/>
+            <input type="text" id="bestGoalie" size="50"/>
+            <input type="hidden" id="bestGoalie.id" name="bestGoalie.id" value=""/>
           </td>
         </tr>
 
@@ -124,7 +141,8 @@
             <label for="goldenShoe"><g:message code="otherPredictions.goldenShoe.label" default="Golden Shoe"/></label>
           </td>
           <td valign="top" class="value ${hasErrors(bean: otherPredictionsInstance, field: 'goldenShoe', 'errors')}">
-            <g:select name="goldenShoe.id" from="${prono.Player.list()}" optionKey="id" value="${otherPredictionsInstance?.goldenShoe?.id}"/>
+            <input type="text" id="goldenShoe" size="50"/>
+            <input type="hidden" id="goldenShoe.id" name="goldenShoe.id" value=""/>
           </td>
         </tr>
 
