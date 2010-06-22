@@ -12,12 +12,15 @@ class Tournament {
 
 	String name
 
+    User user
+
     KnockoutRound theFinal
     KnockoutRound consolidationFinal
 
     static constraints = {
         theFinal(nullable:true)
         consolidationFinal(nullable:true)
+        user(nullable: false, unique:true)
     }
 
     TournamentRound tournamentRoundAt(int roundIndex, int gameIndex){
@@ -39,9 +42,9 @@ class Tournament {
     public List<Team> fourthRounders() {
         def result = new LinkedList()
         fourthRound.each{
-           result.addAll(it.possibleWinners())
+           result.add(it.winner)
+           result.add(it.second)
         }
-        assert(fourthRound.size()==8)
         return result
     }
 }

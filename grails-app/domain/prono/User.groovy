@@ -19,6 +19,8 @@ class User {
 	/** enabled */
 	boolean enabled
 
+    Integer points = 0
+
 	String email
 	boolean emailShow
 

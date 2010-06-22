@@ -5,6 +5,7 @@ import org.codehaus.groovy.grails.plugins.springsecurity.Secured
 /**
  * User controller.
  */
+ @Secured(['ROLE_USER'])
 class UserController {
 
 	def authenticateService
@@ -68,6 +69,7 @@ class UserController {
 		redirect action: list
 	}
 
+    @Secured(['ROLE_ADMIN'])
 	def edit = {
 
 		def person = User.get(params.id)

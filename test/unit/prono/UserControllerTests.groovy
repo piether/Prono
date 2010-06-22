@@ -11,7 +11,4 @@ class UserControllerTests extends ControllerUnitTestCase {
         super.tearDown()
     }
 
-    void testSomething() {
-
-    }
 }

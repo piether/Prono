@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="spinner" class="spinner" style="display:none;">
-  <img src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Spinner"/>
+  <!--<img src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Spinner"/> -->
 </div>
 <div id="loginInfo">
   <g:isNotLoggedIn>
@@ -19,7 +19,6 @@
   <g:isLoggedIn>
     Ingelogd als <g:loggedInUserInfo field="username"/>
     <g:link controller="logout">Logout</g:link>
-    <g:link url='logout' absolute='true'>Logout</g:link>
   </g:isLoggedIn>
 </div>
 <div id="grailsLogo" class="logo">

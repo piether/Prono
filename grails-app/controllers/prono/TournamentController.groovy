@@ -1,6 +1,10 @@
 package prono
 
+import org.codehaus.groovy.grails.plugins.springsecurity.Secured
+
 class TournamentController {
+
+    def authenticateService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST", saveGroupRounds: "POST", saveKnockoutRounds: "POST"]
 
@@ -15,10 +19,12 @@ class TournamentController {
         [tournamentInstanceList: Tournament.list(params), tournamentInstanceTotal: Tournament.count()]
     }
 
+    @Secured(['ROLE_USER'])
     def create = {
         render(view: "create_grouprounds")
     }
 
+    @Secured(['ROLE_USER'])
     def saveGroupRounds = {
         List winners = new ArrayList()
         List seconds = new ArrayList()
@@ -42,7 +48,11 @@ class TournamentController {
         }
         else {
             Tournament wk = wkBuilderService.buildNewWkTournament(winners, seconds)
+            User user = User.findByUsername(authenticateService.principal().getUsername());
+            wk.setUser(user)
+            wk.setName(user.getUserRealName() + " zijn voorspelling")
             if (wk != null && !wk.hasErrors()) {
+                wk.save()
                 render(view: "create_knockoutrounds", model: [tournamentInstance: wk])
             }
             else {
@@ -56,6 +66,7 @@ class TournamentController {
 
     }
 
+    @Secured(['ROLE_USER'])
     def save = {
         def tournamentInstance = new Tournament(params)
         if (tournamentInstance.save(flush: true)) {
@@ -67,6 +78,7 @@ class TournamentController {
         }
     }
 
+    @Secured(['ROLE_USER'])
     def saveKnockoutRounds = {
         def tournamentInstance = Tournament.get(params["tournamentInstance.id"])
 
@@ -95,7 +107,7 @@ class TournamentController {
                 flash.message = "Had ge alles ingevuld?"
                 render(view: "create_knockoutrounds", model: [tournamentInstance: tournamentInstance])
             } else {
-                if(!tournamentInstance.save(flush:true)){
+                if (!tournamentInstance.save(flush: true)) {
                     flash.message = "Er is toch nog iets misgelopen precies"
                 }
                 redirect(controller: "otherPredictions", action: "create")
@@ -140,6 +152,7 @@ class TournamentController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def edit = {
         def tournamentInstance = Tournament.get(params.id)
         if (!tournamentInstance) {
@@ -151,6 +164,7 @@ class TournamentController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def update = {
         def tournamentInstance = Tournament.get(params.id)
         if (tournamentInstance) {
@@ -178,6 +192,7 @@ class TournamentController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def delete = {
         def tournamentInstance = Tournament.get(params.id)
         if (tournamentInstance) {

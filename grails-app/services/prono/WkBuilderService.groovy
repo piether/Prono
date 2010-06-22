@@ -225,8 +225,6 @@ class WkBuilderService {
         wk.theFinal = r1g1
         wk.consolidationFinal = createKnockoutRound(r2g1, r2g2)
 
-        wk.save(flush: true)
-
         return wk
     }
 
